@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% block content %}<header class="hero">
+      <div class="hero-inner container">
+            <h1>Medical Diagnosis System</h1>
+            <p class="lead">Welcome to the Medical Diagnosis System, a powerful 
+                  tool designed to assist healthcare professionals and patients 
+                  in determining possible medical conditions based on symptoms. 
+                  This system utilizes forward and backward chaining methods to
+                   provide a systematic approach to diagnosis. Our goal is to 
+                   enhance the accuracy and efficiency of medical diagnoses by 
+                   guiding users through a structured process of symptom analysis 
+                   and decision-making.</p>
+                   <a class="btn" href="{% url 'register' %}">Get Started</a>
+                  </div>
+            </header>
+            {% endblock %}

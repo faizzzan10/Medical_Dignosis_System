@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+  <h2>Backward Chaining Wizard</h2>
+  <form method="post">{% csrf_token %}
+    <label>Goal (e.g. Influenza (flu)):<br>
+      <input type="text" name="goal" value="{{ goal|default:'' }}" required>
+    </label><br><br>
+
+    <label>Select Symptoms:</label><br>
+    <label><input type="checkbox" name="facts" value="fever"> Fever</label><br>
+    <label><input type="checkbox" name="facts" value="cough"> Cough</label><br>
+    <label><input type="checkbox" name="facts" value="fatigue"> Fatigue</label><br>
+    <label><input type="checkbox" name="facts" value="sneezing"> Sneezing</label><br>
+    <label><input type="checkbox" name="facts" value="headache"> Headache</label><br>
+    <label><input type="checkbox" name="facts" value="nausea"> Nausea</label><br><br>
+
+    <button class="btn" type="submit">Run Backward Chaining</button>
+  </form>
+
+  {% if rule %}
+    <hr>
+    <h3>Goal: {{ goal }}</h3>
+    <p><strong>Supported?</strong> {{ result }}</p>
+    <p><strong>Rule name:</strong> {{ rule.rule_name }}</p>
+    <p><strong>Required symptoms:</strong> 
+      {{ rule.required|join:', ' }}</p>
+    <p><strong>Missing symptoms:</strong> 
+      {% if rule.missing %}
+      {{ rule.missing|join:', ' }}
+      {% else %}None{% endif %}</p>
+    <p><strong>Confidence:</strong> 
+      {{ rule.confidence|floatformat:2 }}</p>
+  {% elif result is not None %}
+    <p>No matching rule found for the specified goal.</p>
+  {% endif %}
+
+  <p><a href="{% url 'diagnosis_home' %}">Back</a></p>
+</main>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class='container'>
+      <h2>Diagnosis Dashboard</h2>
+      <p>This area is protected and only available after login.
+             Rules live in 
+             <code>core/rules.py</code>.
+              No medical rules provided by default.
+            </p><section class='card'>
+                  <h3>Run forward chaining (toy example)</h3>
+                  <form method='post' action='{% url 'run_forward' %}'>{% csrf_token %}
+                        <label>Pick symptom facts:</label>
+                        <br>
+                        <label>
+                              <input type='checkbox' name='facts' value='fever'> Fever</label>
+                              <br>
+                              <label>
+                              <input type='checkbox' name='facts' value='cough'> Cough</label>
+                              <br>
+                              <label>
+                              <input type='checkbox' name='facts' value='fatigue'> Fatigue</label>
+                              <br>
+                              <button class='btn' type='submit'>Run Forward Chain</button></form></section><section class='card'><h3>Backward chaining wizard (toy example)</h3><form method='post' action='{% url 'backward_wizard' %}'>{% csrf_token %}<label>Goal (e.g. possible_infection): <input type='text' name='goal'></label><br><label>Facts:</label><br><label><input type='checkbox' name='facts' value='fever'> Fever</label><br><label><input type='checkbox' name='facts' value='cough'> Cough</label><br><button class='btn' type='submit'>Check Goal</button></form></section></main>{% endblock %}

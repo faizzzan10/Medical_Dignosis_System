@@ -1,0 +1,52 @@
+
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1"><title>Medical Diagnosis System</title><link rel="stylesheet" href="/static/css/styles.css"></head><body>
+<nav class="navbar">
+      <div class="container">
+            <a class="logo" href="/">
+                  <span class="m-logo">M</span> Medical Diagnosis</a>
+<ul class="nav-right">
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'diagnosis_home' %}">Diagnosis</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>{% else %}
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'register' %}">Register</a></li>{% endif %}
+</ul>
+</div>
+</nav>
+{% block content %}
+{% endblock %}
+<footer class="footer"><div class="container footer-grid"><div class="col">
+      <h4>About</h4>
+      <p>We are dedicated to providing a reliable and easy-to-use medical diagnosis
+             tool to support healthcare professionals and patients.</p>
+            </div>
+            <div class="col">
+                  <h4>Quick Links</h4>
+                  <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+      </div>
+      <div class="col">
+            <h4>Contact</h4>
+            <p>faizanrehan4343@gmail.com
+                  <br>+91 7863806323</p>
+                  <div class="social">
+                        <a aria-label="Facebook">f</a>
+                        <a aria-label="Twitter">t</a>
+                        <a aria-label="LinkedIn">in</a>
+                  </div>
+            </div>
+            <div class="col">
+                  <h4>Disclaimer</h4>
+                  <p>The information provided by this system is for educational purposes
+                         only and should not be considered a substitute for professional
+                          medical advice.</p>
+                        </div>
+                  </div>
+                  <div class="footer-bottom">© Medical Diagnosis System</div>
+            </footer>
+      </body>
+      </html>

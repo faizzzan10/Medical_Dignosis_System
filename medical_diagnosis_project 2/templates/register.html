@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<main class='container form-box'><h2>Create an account</h2>
+      <form method='post'>{% csrf_token %}{{ form.as_p }}
+            <button class='btn' type='submit'>Register</button>
+      </form>
+</main>
+{% endblock %}

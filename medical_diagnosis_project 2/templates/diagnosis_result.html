@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+  <h2>Inference Result</h2>
+  <p><strong>Facts:</strong> {% if facts %}{{ facts|join:', ' }}{% else %}None{% endif %}</p>
+
+  {% if inferred %}
+    <h3>Inferred Diagnoses</h3>
+    <ul>
+      {% for item in inferred %}
+        <li>
+          <strong>{{ item.diagnosis }}</strong>
+          (rule: {{ item.rule_name }}, confidence: {{ item.confidence|floatformat:2 }})<br>
+          Matched symptoms: {{ item.matched_symptoms|join:', ' }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p><em>No diagnoses could be inferred from the provided facts.</em></p>
+  {% endif %}
+
+  <p><a href="{% url 'diagnosis_home' %}">Back to Diagnosis</a></p>
+</main>
+{% endblock %}
